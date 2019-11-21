@@ -2,8 +2,7 @@
 This is a repo for recognition of Traffic sign images using a Convolutional Neural Network.
 How to run this code:
 1. Clone this repo
-2. Download the data from this link and extract to the root repo folder:
-(the original data files are obtained from this link: https://www.kaggle.com/valentynsichkar/traffic-signs-preprocessed, however we have combined all these files into a zip folder for convenience). Make sure that the 'data' folder is present in the root folder otherwise the code might give an error.
+2. Download the data from this link: https://drive.google.com/file/d/1AaBbNpHfLHAbRkazMt6XRlGbLbqqpgsU/view?usp=sharing and extract to the root repo folder. The original data files are obtained from this link: https://www.kaggle.com/valentynsichkar/traffic-signs-preprocessed, however we have combined all these files into a zip folder for convenience). Make sure that the 'data' folder is present in the root folder otherwise the code might give an error.
 3. Run one of the files titled traffic_signs_classification_data*.py (this runs the corresponding experiments for each of the data files. Keep in mind that in our testing we used a Nvidia Quadro GV100 GPU, and each runs takes ~45 mins to complete, so please run these on high end GPUs only!!)
 
 ## Data

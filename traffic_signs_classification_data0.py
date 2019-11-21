@@ -97,14 +97,14 @@ with tf.device('/device:GPU:0'):
   data['x_train'] = data['x_train'].transpose(0, 2, 3, 1)
   data['x_validation'] = data['x_validation'].transpose(0, 2, 3, 1)
   data['x_test'] = data['x_test'].transpose(0, 2, 3, 1)
-  
-  
+
+
   CHANNEL = data['x_train'].shape[-1]       # 1 for grayscale, 3 for RGB
 
 
   data["x_train"] = np.concatenate((data["x_train"],data["x_validation"]),axis=0)
   data["y_train"] = np.concatenate((data["y_train"],data["y_validation"]),axis=0)
-  
+
   training_file = open(file_training_validation_results, "w+")
 
   for activation in activations:
@@ -127,7 +127,7 @@ with tf.device('/device:GPU:0'):
 
   """# Calculating accuracy with testing dataset"""
 
-  
+
   for activation in activations:
     for dropout in dropouts:
       for optimizer in optimizers:
@@ -147,13 +147,13 @@ with tf.device('/device:GPU:0'):
   testing_file.close()
 
   best_m = open(best_model_results, "w+")
-  best_result = "BEST MODEL\nTest Accuracy = {0} for the model: Activation={1}, Dropout={2}, Optimizer={3}, Neurons={4}".format(best_acc,best_activation,best_dropout,best_optimizer,best_neuron))
+  best_result = "BEST MODEL\nTest Accuracy = {0} for the model: Activation={1}, Dropout={2}, Optimizer={3}, Neurons={4}".format(best_acc,best_activation,best_dropout,best_optimizer,best_neuron)
   best_m.write(best_result)
   best_m.close()
 
   best_model = models[best_activation][best_dropout][best_optimizer][best_neuron]
   plot_model(best_model.history,best_activation, best_dropout, best_optimizer, best_neuron)
-  
+
   with open(pkl_filename, 'wb') as file:
       pickle.dump(best_model, file)
 

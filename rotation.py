@@ -5,7 +5,7 @@ import math as math
 import matplotlib.pyplot as plt
 
 # Opening file for reading in binary mode
-with open('./data/data4.pickle', 'rb') as f:
+with open('../data/data7.pickle', 'rb') as f:
     data = pickle.load(f, encoding='latin1')  # dictionary type
 
 
@@ -77,7 +77,7 @@ for i, j in data.items():
 
 
 
-def create_model(activation='tanh', dropout=0.0,optimizer='adam',neurons=64):
+def create_model(activation='tanh', dropout=0.3,optimizer='adam',neurons=128):
   model = tf.keras.Sequential()
   model.add(tf.keras.layers.Conv2D(neurons, kernel_size=3, padding='same', activation=activation, input_shape=(32, 32, 1)))
   model.add(tf.keras.layers.MaxPool2D(pool_size=2))
@@ -97,38 +97,40 @@ model = create_model()
 EPOCHS = 10
 BATCH_SIZE = 512
 
-# Random Rotations
-# define data preparation
-datagen = tf.keras.preprocessing.image.ImageDataGenerator(rotation_range=45)
-# fit parameters from data
-datagen.fit(data['x_train'])
+with tf.device('/device:GPU:0'):
 
-# fits the model on batches with real-time data augmentation:
-model.fit_generator(datagen.flow(data['x_train'], data['y_train'], batch_size=BATCH_SIZE),
-                    steps_per_epoch=len(data['x_train']) / BATCH_SIZE, epochs=EPOCHS)
+    # Random Rotations
+    # define data preparation
+    datagen = tf.keras.preprocessing.image.ImageDataGenerator(rotation_range=45, brightness_range=[0.2,1.0])
+    # fit parameters from data
+    datagen.fit(data['x_train'])
+
+    # fits the model on batches with real-time data augmentation:
+    model.fit_generator(datagen.flow(data['x_train'], data['y_train'], batch_size=BATCH_SIZE),
+                        steps_per_epoch=len(data['x_train']) / BATCH_SIZE, epochs=EPOCHS)
 
 
-# configure batch size and retrieve one batch of images
-for X_batch, y_batch in datagen.flow(data['x_train'], data['y_train'], batch_size=9):
-	# create a grid of 3x3 images
-	for i in range(0, 9):
-		plt.subplot(330 + 1 + i)
-		plt.imshow(X_batch[i].squeeze(), cmap=plt.get_cmap('gray'))
-	# show the plot
-	plt.show()
-	break
+    # configure batch size and retrieve one batch of images
+    for X_batch, y_batch in datagen.flow(data['x_train'], data['y_train'], batch_size=16):
+        # create a grid of 3x3 images
+        for i in range(0, 9):
+            plt.subplot(330 + 1 + i)
+            plt.imshow(X_batch[i].squeeze(), cmap=plt.get_cmap('gray'))
+        # show the plot
+        plt.show()
+        break
 
-# here's a more "manual" example
-for e in range(EPOCHS):
-    print('Epoch', e)
-    batches = 0
-    for x_batch, y_batch in datagen.flow(data['x_train'], data['y_train'], batch_size=BATCH_SIZE):
-        model.fit(x_batch, y_batch)
-        batches += 1
-        if batches >= len(data['x_train']) / 32:
-            # we need to break the loop by hand because
-            # the generator loops indefinitely
-            break
+    # here's a more "manual" example
+    for e in range(EPOCHS):
+        print('Epoch', e)
+        batches = 0
+        for x_batch, y_batch in datagen.flow(data['x_train'], data['y_train'], batch_size=BATCH_SIZE):
+            model.fit(x_batch, y_batch)
+            batches += 1
+            if batches >= len(data['x_train']) / 32:
+                # we need to break the loop by hand because
+                # the generator loops indefinitely
+                break
 
 
 

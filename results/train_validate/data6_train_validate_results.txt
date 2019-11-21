@@ -1,0 +1,162 @@
+Training with params sigmoid, 0.1, adam, 32
+Training Accuracy = 0.0225855358802995, Validation Accuracy = 0.022392414302383784
+========
+Training with params sigmoid, 0.1, adam, 64
+Training Accuracy = 0.02363275449736572, Validation Accuracy = 0.020532458058451754
+========
+Training with params sigmoid, 0.1, adam, 128
+Training Accuracy = 0.023351412185004482, Validation Accuracy = 0.022392414302383784
+========
+Training with params sigmoid, 0.1, sgd, 32
+Training Accuracy = 0.0229137685752788, Validation Accuracy = 0.021480671049283858
+========
+Training with params sigmoid, 0.1, sgd, 64
+Training Accuracy = 0.023679644881730588, Validation Accuracy = 0.022210065651763797
+========
+Training with params sigmoid, 0.1, sgd, 128
+Training Accuracy = 0.023976617328899823, Validation Accuracy = 0.023595915374466314
+========
+Training with params sigmoid, 0.3, adam, 32
+Training Accuracy = 0.6893980838831786, Validation Accuracy = 0.7352662289864299
+========
+Training with params sigmoid, 0.3, adam, 64
+Training Accuracy = 0.023585864114543865, Validation Accuracy = 0.02202771699978521
+========
+Training with params sigmoid, 0.3, adam, 128
+Training Accuracy = 0.02267931665365826, Validation Accuracy = 0.027826404076458155
+========
+Training with params sigmoid, 0.3, sgd, 32
+Training Accuracy = 0.022976289088279627, Validation Accuracy = 0.02578409918951432
+========
+Training with params sigmoid, 0.3, sgd, 64
+Training Accuracy = 0.023101330130118957, Validation Accuracy = 0.020751276439195738
+========
+Training with params sigmoid, 0.3, sgd, 128
+Training Accuracy = 0.023601494238550794, Validation Accuracy = 0.021261852668539874
+========
+Training with params sigmoid, 0.5, adam, 32
+Training Accuracy = 0.5665140124829892, Validation Accuracy = 0.6325674692702763
+========
+Training with params sigmoid, 0.5, adam, 64
+Training Accuracy = 0.02292939870874758, Validation Accuracy = 0.02392414294558229
+========
+Training with params sigmoid, 0.5, adam, 128
+Training Accuracy = 0.022601166010478468, Validation Accuracy = 0.026914660813032842
+========
+Training with params sigmoid, 0.5, sgd, 32
+Training Accuracy = 0.023179480763633107, Validation Accuracy = 0.023668854855365077
+========
+Training with params sigmoid, 0.5, sgd, 64
+Training Accuracy = 0.022523015367298675, Validation Accuracy = 0.02217359591335232
+========
+Training with params sigmoid, 0.5, sgd, 128
+Training Accuracy = 0.02289813844818585, Validation Accuracy = 0.022355944570901183
+========
+Training with params tanh, 0.1, adam, 32
+Training Accuracy = 0.9957798654732494, Validation Accuracy = 0.9749452955265449
+========
+Training with params tanh, 0.1, adam, 64
+Training Accuracy = 0.9989840418436209, Validation Accuracy = 0.9785557984871033
+========
+Training with params tanh, 0.1, adam, 128
+Training Accuracy = 0.9996405072621688, Validation Accuracy = 0.9796134207302597
+========
+Training with params tanh, 0.1, sgd, 32
+Training Accuracy = 0.07225808470080626, Validation Accuracy = 0.08453683443177276
+========
+Training with params tanh, 0.1, sgd, 64
+Training Accuracy = 0.06810047044230025, Validation Accuracy = 0.07585703866986965
+========
+Training with params tanh, 0.1, sgd, 128
+Training Accuracy = 0.08107347724974015, Validation Accuracy = 0.08967906642490543
+========
+Training with params tanh, 0.3, adam, 32
+Training Accuracy = 0.9927007298794942, Validation Accuracy = 0.973194748480593
+========
+Training with params tanh, 0.3, adam, 64
+Training Accuracy = 0.9975773302822223, Validation Accuracy = 0.9773158276628874
+========
+Training with params tanh, 0.3, adam, 128
+Training Accuracy = 0.9994060550959959, Validation Accuracy = 0.9800145877616236
+========
+Training with params tanh, 0.3, sgd, 32
+Training Accuracy = 0.051235561658599306, Validation Accuracy = 0.06991247261835658
+========
+Training with params tanh, 0.3, sgd, 64
+Training Accuracy = 0.06655308774693454, Validation Accuracy = 0.09741064913945856
+========
+Training with params tanh, 0.3, sgd, 128
+Training Accuracy = 0.07694712328192822, Validation Accuracy = 0.09172137128902473
+========
+Training with params tanh, 0.5, adam, 32
+Training Accuracy = 0.9868706921665906, Validation Accuracy = 0.9753099930103811
+========
+Training with params tanh, 0.5, adam, 64
+Training Accuracy = 0.9953734819079185, Validation Accuracy = 0.9781546315948603
+========
+Training with params tanh, 0.5, adam, 128
+Training Accuracy = 0.9984526172650401, Validation Accuracy = 0.9800145878311842
+========
+Training with params tanh, 0.5, sgd, 32
+Training Accuracy = 0.04207630630168404, Validation Accuracy = 0.07749817651023315
+========
+Training with params tanh, 0.5, sgd, 64
+Training Accuracy = 0.05489301176867169, Validation Accuracy = 0.09657184530530508
+========
+Training with params tanh, 0.5, sgd, 128
+Training Accuracy = 0.06697510122802426, Validation Accuracy = 0.07910284460199567
+========
+Training with params relu, 0.1, adam, 32
+Training Accuracy = 0.9830882010050133, Validation Accuracy = 0.9657913932654216
+========
+Training with params relu, 0.1, adam, 64
+Training Accuracy = 0.9874333765133385, Validation Accuracy = 0.9692924875399216
+========
+Training with params relu, 0.1, adam, 128
+Training Accuracy = 0.9897310056752957, Validation Accuracy = 0.9672866522700659
+========
+Training with params relu, 0.1, sgd, 32
+Training Accuracy = 0.03674643242447806, Validation Accuracy = 0.04529540480585276
+========
+Training with params relu, 0.1, sgd, 64
+Training Accuracy = 0.03827818501938956, Validation Accuracy = 0.04533187456151849
+========
+Training with params relu, 0.1, sgd, 128
+Training Accuracy = 0.03374544773737885, Validation Accuracy = 0.037636761490138754
+========
+Training with params relu, 0.3, adam, 32
+Training Accuracy = 0.9792119290874578, Validation Accuracy = 0.9667396059964888
+========
+Training with params relu, 0.3, adam, 64
+Training Accuracy = 0.9838228167350813, Validation Accuracy = 0.9690371992464574
+========
+Training with params relu, 0.3, adam, 128
+Training Accuracy = 0.9884493350954717, Validation Accuracy = 0.9691466085063898
+========
+Training with params relu, 0.3, sgd, 32
+Training Accuracy = 0.031182106628329966, Validation Accuracy = 0.03307804521838954
+========
+Training with params relu, 0.3, sgd, 64
+Training Accuracy = 0.039122211967478136, Validation Accuracy = 0.04321663020318612
+========
+Training with params relu, 0.3, sgd, 128
+Training Accuracy = 0.04043514279490838, Validation Accuracy = 0.05944566011950537
+========
+Training with params relu, 0.5, adam, 32
+Training Accuracy = 0.9764610261792201, Validation Accuracy = 0.9717724289361966
+========
+Training with params relu, 0.5, adam, 64
+Training Accuracy = 0.9824786259565355, Validation Accuracy = 0.971517141007925
+========
+Training with params relu, 0.5, adam, 128
+Training Accuracy = 0.9884337047618775, Validation Accuracy = 0.9732676876886842
+========
+Training with params relu, 0.5, sgd, 32
+Training Accuracy = 0.025023835939590212, Validation Accuracy = 0.03132749815803649
+========
+Training with params relu, 0.5, sgd, 64
+Training Accuracy = 0.02833742321349947, Validation Accuracy = 0.028811086793881883
+========
+Training with params relu, 0.5, sgd, 128
+Training Accuracy = 0.0316979008733166, Validation Accuracy = 0.05211524433904021
+========

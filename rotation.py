@@ -132,6 +132,62 @@ with tf.device('/device:GPU:0'):
                 # the generator loops indefinitely
                 break
 
+'''
+
+def reset_keras():
+  """
+  Reset tensorflow session, delete the model and perform garbage collection.
+  Refer https://github.com/keras-team/keras/issues/12625#issuecomment-481480081 
+  for more details 
+  """
+  sess = tf.keras.backend.get_session()
+  tf.keras.backend.clear_session()
+  sess.close()
+  with suppress(Exception):
+    del model
+  gc.collect()
+  # np.random.seed(7)
+  # random.seed(7)
+  # tf.set_random_seed(7)
+  tf.keras.backend.set_session(tf.Session())
+
+reset_keras()
+
+vgg16 = tf.keras.applications.VGG16(include_top=False)
+resnet50 = tf.keras.applications.ResNet50(include_top=False)
+
+input_ = tf.keras.layers.Input(shape=IMAGE_SHAPE)
+vgg16_ = vgg16(input_)
+resnet50_ = resnet50(input_)
+model = tf.keras.layers.Concatenate()([vgg16_, resnet50_])
+model = tf.keras.layers.GlobalAveragePooling2D()(model)
+model = tf.keras.layers.Dropout(0.5)(model)
+model = tf.keras.layers.Dense(1024, activation='relu')(model)
+model = tf.keras.layers.Dropout(0.5)(model)
+model = tf.keras.layers.Dense(1024, activation='relu')(model)
+model = tf.keras.layers.Dropout(0.5)(model)
+model = tf.keras.layers.Dense(1024, activation='relu')(model)
+model = tf.keras.layers.Dense(5, activation='softmax')(model)
+model = tf.keras.models.Model(inputs=input_, outputs=model)
+
+model.compile(loss='categorical_crossentropy', 
+              optimizer=tf.keras.optimizers.Adam(3e-4), 
+              metrics=['accuracy'])
+
+history_pretrained = model.fit(X_og, Y_og, batch_size=32, epochs=10, verbose=1,
+                               validation_split=0.2)
+
+for model_ in (resnet50, vgg16):
+  for layer in model_.layers:
+    layer.trainable = False
+
+model.compile(loss='categorical_crossentropy', 
+              optimizer=tf.keras.optimizers.Adam(3e-4), 
+              metrics=['accuracy'])
+
+history = model.fit(X_og, Y_og, batch_size=32, epochs=7, verbose=1,
+                    validation_split=0.2)
+'''
 
 
 

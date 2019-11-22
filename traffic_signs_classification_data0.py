@@ -115,6 +115,7 @@ with tf.device('/device:GPU:0'):
         models[activation][dropout][optimizer] = {}
         for neuron in neurons:
           train_msg = "Training with params {0}, {1}, {2}, {3}".format(activation,dropout,optimizer,neuron)
+          print(train_msg)
           model = create_model(activation=activation,dropout=dropout,optimizer=optimizer,neurons=neuron, channel=CHANNEL)
           model.fit(data['x_train'], data['y_train'],batch_size=512, epochs = epochs,validation_split=0.3,callbacks=[annealer, es, mc])
           models[activation][dropout][optimizer][neuron] = model

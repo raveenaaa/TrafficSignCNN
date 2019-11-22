@@ -77,24 +77,81 @@ for i, j in data.items():
 
 
 
-def create_model(activation='tanh', dropout=0.3,optimizer='adam',neurons=128):
-  model = tf.keras.Sequential()
-  model.add(tf.keras.layers.Conv2D(neurons, kernel_size=3, padding='same', activation=activation, input_shape=(32, 32, 1)))
-  model.add(tf.keras.layers.MaxPool2D(pool_size=2))
-  model.add(tf.keras.layers.Dropout(dropout))
+# def create_model(activation='tanh', dropout=0.3,optimizer='adam',neurons=128):
+#   model = tf.keras.Sequential()
+#   model.add(tf.keras.layers.Conv2D(neurons, kernel_size=3, padding='same', activation=activation, input_shape=(32, 32, 1)))
+#   model.add(tf.keras.layers.MaxPool2D(pool_size=2))
+#   model.add(tf.keras.layers.Dropout(dropout))
 
-  model.add(tf.keras.layers.Flatten())
-  model.add(tf.keras.layers.Dense(128, activation=activation))
-  model.add(tf.keras.layers.Dense(128, activation=activation))
-  model.add(tf.keras.layers.Dense(43, activation='softmax'))
-  model.compile(optimizer=optimizer, loss='categorical_crossentropy', metrics=['accuracy'])
-  return model
-
-
+#   model.add(tf.keras.layers.Flatten())
+#   model.add(tf.keras.layers.Dense(128, activation=activation))
+#   model.add(tf.keras.layers.Dense(128, activation=activation))
+#   model.add(tf.keras.layers.Dense(43, activation='softmax'))
+#   model.compile(optimizer=optimizer, loss='categorical_crossentropy', metrics=['accuracy'])
+#   return model
 
 
-model = create_model()
-EPOCHS = 10
+
+# def reset_keras():
+#     """
+#     Reset tensorflow session, delete the model and perform garbage collection.
+#     Refer https://github.com/keras-team/keras/issues/12625#issuecomment-481480081 
+#     for more details 
+#     """
+#     sess = tf.keras.backend.get_session()
+#     tf.keras.backend.clear_session()
+#     sess.close()
+#     with suppress(Exception):
+#         del model
+#     gc.collect()
+#     # np.random.seed(7)
+#     # random.seed(7)
+#     # tf.set_random_seed(7)
+#     tf.keras.backend.set_session(tf.Session())
+
+
+def create_model2(IMAGE_SHAPE=(32, 32, 1)):
+
+    # model = tf.keras.Sequential()
+
+    # # Remove the prediction layer and add to new model
+    # for layer in vgg16_model.layers[:-1]: 
+    #     model.add(layer)    
+
+    # # Freeze the layers 
+    # for layer in model.layers:
+    #     layer.trainable = False
+
+    # # Add 'softmax' instead of earlier 'prediction' layer.
+    # model.add(tf.keras.layers.Dense(5, activation='softmax'))
+
+
+    # reset_keras()
+
+    vgg16 = tf.keras.applications.VGG16(include_top=True, 
+                                          weights=None, 
+                                          input_tensor=None, 
+                                          input_shape=(32, 32, 1), 
+                                          pooling=None, 
+                                          classes=43)
+
+    # input_ = tf.keras.layers.Input(shape=IMAGE_SHAPE)
+    vgg16.compile(loss='categorical_crossentropy', 
+                optimizer=tf.keras.optimizers.Adam(3e-4), 
+                metrics=['accuracy'])
+
+    vgg16.summary()
+
+    return vgg16
+
+
+
+
+
+
+
+model = create_model2()
+EPOCHS = 2
 BATCH_SIZE = 512
 
 with tf.device('/device:GPU:0'):
@@ -127,67 +184,27 @@ with tf.device('/device:GPU:0'):
         for x_batch, y_batch in datagen.flow(data['x_train'], data['y_train'], batch_size=BATCH_SIZE):
             model.fit(x_batch, y_batch)
             batches += 1
-            if batches >= len(data['x_train']) / 32:
+            if batches >= len(data['x_train']) / 512:
                 # we need to break the loop by hand because
                 # the generator loops indefinitely
                 break
 
-'''
 
-def reset_keras():
-  """
-  Reset tensorflow session, delete the model and perform garbage collection.
-  Refer https://github.com/keras-team/keras/issues/12625#issuecomment-481480081 
-  for more details 
-  """
-  sess = tf.keras.backend.get_session()
-  tf.keras.backend.clear_session()
-  sess.close()
-  with suppress(Exception):
-    del model
-  gc.collect()
-  # np.random.seed(7)
-  # random.seed(7)
-  # tf.set_random_seed(7)
-  tf.keras.backend.set_session(tf.Session())
 
-reset_keras()
+    # history_pretrained = model.fit(X_og, Y_og, batch_size=32, epochs=10, verbose=1,
+    #                             validation_split=0.2)
 
-vgg16 = tf.keras.applications.VGG16(include_top=False)
-resnet50 = tf.keras.applications.ResNet50(include_top=False)
+    # for model_ in (resnet50, vgg16):
+    # for layer in model_.layers:
+    #     layer.trainable = False
 
-input_ = tf.keras.layers.Input(shape=IMAGE_SHAPE)
-vgg16_ = vgg16(input_)
-resnet50_ = resnet50(input_)
-model = tf.keras.layers.Concatenate()([vgg16_, resnet50_])
-model = tf.keras.layers.GlobalAveragePooling2D()(model)
-model = tf.keras.layers.Dropout(0.5)(model)
-model = tf.keras.layers.Dense(1024, activation='relu')(model)
-model = tf.keras.layers.Dropout(0.5)(model)
-model = tf.keras.layers.Dense(1024, activation='relu')(model)
-model = tf.keras.layers.Dropout(0.5)(model)
-model = tf.keras.layers.Dense(1024, activation='relu')(model)
-model = tf.keras.layers.Dense(5, activation='softmax')(model)
-model = tf.keras.models.Model(inputs=input_, outputs=model)
+    # model.compile(loss='categorical_crossentropy', 
+    #             optimizer=tf.keras.optimizers.Adam(3e-4), 
+    #             metrics=['accuracy'])
 
-model.compile(loss='categorical_crossentropy', 
-              optimizer=tf.keras.optimizers.Adam(3e-4), 
-              metrics=['accuracy'])
+    # history = model.fit(X_og, Y_og, batch_size=32, epochs=7, verbose=1,
+    #                     validation_split=0.2)
 
-history_pretrained = model.fit(X_og, Y_og, batch_size=32, epochs=10, verbose=1,
-                               validation_split=0.2)
-
-for model_ in (resnet50, vgg16):
-  for layer in model_.layers:
-    layer.trainable = False
-
-model.compile(loss='categorical_crossentropy', 
-              optimizer=tf.keras.optimizers.Adam(3e-4), 
-              metrics=['accuracy'])
-
-history = model.fit(X_og, Y_og, batch_size=32, epochs=7, verbose=1,
-                    validation_split=0.2)
-'''
 
 
 

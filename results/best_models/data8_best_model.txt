@@ -1,0 +1,2 @@
+BEST MODEL
+Test Accuracy = 0.9387965162311955 for the model: Activation=tanh, Dropout=0.1, Optimizer=adam, Neurons=128

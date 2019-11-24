@@ -16,7 +16,7 @@ import tensorflow as tf
 
 
 # Change these
-choice = 7        # data file (7, 8) are left
+choice = 8        # all done
 
 data_filename = "./data/data{}.pickle".format(choice)
 pkl_filename = "./saved_models/data{}_model.pkl".format(choice)

@@ -1,0 +1,108 @@
+Test Accuracy = 0.6601741884402217 for the model: Activation=sigmoid, Dropout=0.1, Optimizer=adam, Neurons=32
+========
+Test Accuracy = 0.4513064133016627 for the model: Activation=sigmoid, Dropout=0.1, Optimizer=adam, Neurons=64
+========
+Test Accuracy = 0.11314330958036421 for the model: Activation=sigmoid, Dropout=0.1, Optimizer=adam, Neurons=128
+========
+Test Accuracy = 0.010372129849564529 for the model: Activation=sigmoid, Dropout=0.1, Optimizer=sgd, Neurons=32
+========
+Test Accuracy = 0.036737925574030085 for the model: Activation=sigmoid, Dropout=0.1, Optimizer=sgd, Neurons=64
+========
+Test Accuracy = 0.004750593824228029 for the model: Activation=sigmoid, Dropout=0.1, Optimizer=sgd, Neurons=128
+========
+Test Accuracy = 0.6661916072842439 for the model: Activation=sigmoid, Dropout=0.3, Optimizer=adam, Neurons=32
+========
+Test Accuracy = 0.4566904196357878 for the model: Activation=sigmoid, Dropout=0.3, Optimizer=adam, Neurons=64
+========
+Test Accuracy = 0.24853523357086302 for the model: Activation=sigmoid, Dropout=0.3, Optimizer=adam, Neurons=128
+========
+Test Accuracy = 0.05170229612034838 for the model: Activation=sigmoid, Dropout=0.3, Optimizer=sgd, Neurons=32
+========
+Test Accuracy = 0.0332541567695962 for the model: Activation=sigmoid, Dropout=0.3, Optimizer=sgd, Neurons=64
+========
+Test Accuracy = 0.05233570863024545 for the model: Activation=sigmoid, Dropout=0.3, Optimizer=sgd, Neurons=128
+========
+Test Accuracy = 0.6756136183689628 for the model: Activation=sigmoid, Dropout=0.5, Optimizer=adam, Neurons=32
+========
+Test Accuracy = 0.5235154394299287 for the model: Activation=sigmoid, Dropout=0.5, Optimizer=adam, Neurons=64
+========
+Test Accuracy = 0.21369754552652415 for the model: Activation=sigmoid, Dropout=0.5, Optimizer=adam, Neurons=128
+========
+Test Accuracy = 0.011876484560570071 for the model: Activation=sigmoid, Dropout=0.5, Optimizer=sgd, Neurons=32
+========
+Test Accuracy = 0.0166270783847981 for the model: Activation=sigmoid, Dropout=0.5, Optimizer=sgd, Neurons=64
+========
+Test Accuracy = 0.021377672209026127 for the model: Activation=sigmoid, Dropout=0.5, Optimizer=sgd, Neurons=128
+========
+Test Accuracy = 0.9051464766429137 for the model: Activation=tanh, Dropout=0.1, Optimizer=adam, Neurons=32
+========
+Test Accuracy = 0.91243072050673 for the model: Activation=tanh, Dropout=0.1, Optimizer=adam, Neurons=64
+========
+Test Accuracy = 0.9085510688836105 for the model: Activation=tanh, Dropout=0.1, Optimizer=adam, Neurons=128
+========
+Test Accuracy = 0.16144101346001583 for the model: Activation=tanh, Dropout=0.1, Optimizer=sgd, Neurons=32
+========
+Test Accuracy = 0.23681710213776722 for the model: Activation=tanh, Dropout=0.1, Optimizer=sgd, Neurons=64
+========
+Test Accuracy = 0.2732383214568488 for the model: Activation=tanh, Dropout=0.1, Optimizer=sgd, Neurons=128
+========
+Test Accuracy = 0.9081551860649247 for the model: Activation=tanh, Dropout=0.3, Optimizer=adam, Neurons=32
+========
+Test Accuracy = 0.9114806017418844 for the model: Activation=tanh, Dropout=0.3, Optimizer=adam, Neurons=64
+========
+Test Accuracy = 0.9140142517814727 for the model: Activation=tanh, Dropout=0.3, Optimizer=adam, Neurons=128
+========
+Test Accuracy = 0.15795724465558195 for the model: Activation=tanh, Dropout=0.3, Optimizer=sgd, Neurons=32
+========
+Test Accuracy = 0.2566112430720507 for the model: Activation=tanh, Dropout=0.3, Optimizer=sgd, Neurons=64
+========
+Test Accuracy = 0.2589073634204275 for the model: Activation=tanh, Dropout=0.3, Optimizer=sgd, Neurons=128
+========
+Test Accuracy = 0.9135391923990499 for the model: Activation=tanh, Dropout=0.5, Optimizer=adam, Neurons=32
+========
+Test Accuracy = 0.9106096595407759 for the model: Activation=tanh, Dropout=0.5, Optimizer=adam, Neurons=64
+========
+Test Accuracy = 0.908867775138559 for the model: Activation=tanh, Dropout=0.5, Optimizer=adam, Neurons=128
+========
+Test Accuracy = 0.15201900237529692 for the model: Activation=tanh, Dropout=0.5, Optimizer=sgd, Neurons=32
+========
+Test Accuracy = 0.20459224069675377 for the model: Activation=tanh, Dropout=0.5, Optimizer=sgd, Neurons=64
+========
+Test Accuracy = 0.22731591448931115 for the model: Activation=tanh, Dropout=0.5, Optimizer=sgd, Neurons=128
+========
+Test Accuracy = 0.8813143309580365 for the model: Activation=relu, Dropout=0.1, Optimizer=adam, Neurons=32
+========
+Test Accuracy = 0.8833729216152019 for the model: Activation=relu, Dropout=0.1, Optimizer=adam, Neurons=64
+========
+Test Accuracy = 0.8904196357878068 for the model: Activation=relu, Dropout=0.1, Optimizer=adam, Neurons=128
+========
+Test Accuracy = 0.07030878859857483 for the model: Activation=relu, Dropout=0.1, Optimizer=sgd, Neurons=32
+========
+Test Accuracy = 0.11726049089469517 for the model: Activation=relu, Dropout=0.1, Optimizer=sgd, Neurons=64
+========
+Test Accuracy = 0.10237529691211401 for the model: Activation=relu, Dropout=0.1, Optimizer=sgd, Neurons=128
+========
+Test Accuracy = 0.8786223277909738 for the model: Activation=relu, Dropout=0.3, Optimizer=adam, Neurons=32
+========
+Test Accuracy = 0.8881235154394299 for the model: Activation=relu, Dropout=0.3, Optimizer=adam, Neurons=64
+========
+Test Accuracy = 0.8855898653998416 for the model: Activation=relu, Dropout=0.3, Optimizer=adam, Neurons=128
+========
+Test Accuracy = 0.08622327790973872 for the model: Activation=relu, Dropout=0.3, Optimizer=sgd, Neurons=32
+========
+Test Accuracy = 0.0840855106888361 for the model: Activation=relu, Dropout=0.3, Optimizer=sgd, Neurons=64
+========
+Test Accuracy = 0.09960411718131433 for the model: Activation=relu, Dropout=0.3, Optimizer=sgd, Neurons=128
+========
+Test Accuracy = 0.8874901029295329 for the model: Activation=relu, Dropout=0.5, Optimizer=adam, Neurons=32
+========
+Test Accuracy = 0.8941409342834521 for the model: Activation=relu, Dropout=0.5, Optimizer=adam, Neurons=64
+========
+Test Accuracy = 0.8927949326999208 for the model: Activation=relu, Dropout=0.5, Optimizer=adam, Neurons=128
+========
+Test Accuracy = 0.060570071258907364 for the model: Activation=relu, Dropout=0.5, Optimizer=sgd, Neurons=32
+========
+Test Accuracy = 0.10965954077593032 for the model: Activation=relu, Dropout=0.5, Optimizer=sgd, Neurons=64
+========
+Test Accuracy = 0.11243072050673 for the model: Activation=relu, Dropout=0.5, Optimizer=sgd, Neurons=128
+========

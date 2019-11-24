@@ -1,0 +1,2 @@
+BEST MODEL
+Test Accuracy = 0.9466349960411719 for the model: Activation=sigmoid, Dropout=0.5, Optimizer=adam, Neurons=64

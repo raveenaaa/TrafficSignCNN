@@ -16,9 +16,9 @@ import tensorflow as tf
 
 
 # Change these
-choice = 2
+choice = 3
 activation = "tanh"
-dropout = 0.1
+dropout = 0.3
 optimizer = "adam"
 neuron = 128
 # Change these: ends
@@ -124,7 +124,7 @@ with tf.device('/device:GPU:0'):
   plot_model(model.history,epochs)
   
   # fit the model again for max_val_epoch epochs
-  model.fit(data['x_train'], data['y_train'],batch_size=512, epochs = max_val_epoch,validation_split=0.3,callbacks=[annealer, es, mc])
+  model.fit(data['x_train'], data['y_train'],batch_size=512, epochs = max_val_epoch,validation_split=0.3,callbacks=[annealer, mc])
 
   
   """# Calculating accuracy with testing dataset"""

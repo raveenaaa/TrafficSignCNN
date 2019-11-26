@@ -16,7 +16,12 @@ import tensorflow as tf
 
 
 # Change these
-choice = 0        # all done
+choice = 2
+activation = "tanh"
+dropout = 0.1
+optimizer = "adam"
+neuron = 128
+# Change these: ends
 
 data_filename = "./data/data{}.pickle".format(choice)
 pkl_filename = "./saved_models_step2/data{}_model.pkl".format(choice)
@@ -27,20 +32,12 @@ plot_loss = "./training_plots_step2/data{}_loss.png".format(choice)
 file_training_validation_results = "./results_step2/train_validate/data{}_train_validate_results.txt".format(choice)
 file_testing_results = "./results_step2/test/data{}_test_results.txt".format(choice)
 best_model_results = "./results_step2/best_models/data{}_best_model.txt".format(choice)
-# Change these: ends
 
-epochs = 50
-epoch_step_size = 2
 
-# epochs = np.arange(epoch_min,22,epoch_step_size)
+epochs = 51
+epoch_step_size = 3
 
-activation = "sigmoid"
-dropout = 0.5
-optimizer = "adam"
-neuron = 128
 
-best_acc = 0
-best_epoch = -1
 
 annealer = LearningRateScheduler(lambda x: 1e-3 * 0.95 ** (x + epochs))
 es = EarlyStopping(monitor='val_loss', mode='min', min_delta=0.001, patience=2, verbose=1, restore_best_weights=True)
@@ -119,7 +116,7 @@ with tf.device('/device:GPU:0'):
 
   train_result = "Training Accuracies = "+str(training_accuracies)+"\nValidation Accuracies = "+str(validation_accuracies)+"\n"
   train_result += "Max Training Accuracy occurred at "+str(max_train_epoch)+" epochs\n"
-  train_result += "Max Valiation Accuracy occurred at "+str(max_val_epoch)+" epochs\n"
+  train_result += "Max Validation Accuracy occurred at "+str(max_val_epoch)+" epochs\n"
   training_file.write(train_result + "\n========\n")
 
   training_file.close()
@@ -129,21 +126,16 @@ with tf.device('/device:GPU:0'):
   # fit the model again for max_val_epoch epochs
   model.fit(data['x_train'], data['y_train'],batch_size=512, epochs = max_val_epoch,validation_split=0.3,callbacks=[annealer, es, mc])
 
-  testing_file = open(file_testing_results, "w+")
-
   
   """# Calculating accuracy with testing dataset"""
 
   temp = model.predict(data['x_test'])
   temp = np.argmax(temp, axis=1)
   temp = np.mean(temp == data['y_test'])
-  test_result = "Test Accuracy = {0} for {1} epochs".format(temp, max_val_epoch)
-  testing_file.write(test_result + "\n========\n")
 
-  testing_file.close()
 
   best_m = open(best_model_results, "w+")
-  best_result = "BEST MODEL\nTest Accuracy = {0} for {1} epochs".format(best_acc,max_val_epoch)
+  best_result = "BEST MODEL\nTest Accuracy = {0} for {1} epochs".format(temp,max_val_epoch)
   best_m.write(best_result)
   best_m.close()
 

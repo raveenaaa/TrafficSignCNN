@@ -11,19 +11,27 @@ from keras.layers import Dense, Dropout, Flatten, Conv2D, MaxPool2D, AvgPool2D, 
 from keras.preprocessing.image import ImageDataGenerator
 from keras.callbacks import LearningRateScheduler, EarlyStopping, ModelCheckpoint
 
+from sklearn.metrics import accuracy_score
+
 import os
 import tensorflow as tf
 
-
 # Change these
-choice = 3
+choice = 8
 activation = "tanh"
-dropout = 0.3
+dropout = 0.1
 optimizer = "adam"
 neuron = 128
 # Change these: ends
 
 data_filename = "./data/data{}.pickle".format(choice)
+
+os.makedirs("./results_step2/test", exist_ok=True)
+os.makedirs("./results_step2/train_validate", exist_ok=True)
+os.makedirs("./saved_models_step2", exist_ok=True)
+os.makedirs("././training_plots_step2", exist_ok=True)
+
+
 pkl_filename = "./saved_models_step2/data{}_model.pkl".format(choice)
 
 plot_acc = "./training_plots_step2/data{}_acc.png".format(choice)
@@ -31,7 +39,6 @@ plot_loss = "./training_plots_step2/data{}_loss.png".format(choice)
 
 file_training_validation_results = "./results_step2/train_validate/data{}_train_validate_results.txt".format(choice)
 file_testing_results = "./results_step2/test/data{}_test_results.txt".format(choice)
-best_model_results = "./results_step2/best_models/data{}_best_model.txt".format(choice)
 
 
 epochs = 51
@@ -90,6 +97,7 @@ with tf.device('/device:GPU:0'):
   # Preparing y_train and y_validation for using in Keras
   data['y_train'] = to_categorical(data['y_train'], num_classes=43)
   data['y_validation'] = to_categorical(data['y_validation'], num_classes=43)
+  data['y_test'] = to_categorical(data['y_test'],num_classes = 43)
 
   # Making channels come at the end
   data['x_train'] = data['x_train'].transpose(0, 2, 3, 1)
@@ -110,34 +118,26 @@ with tf.device('/device:GPU:0'):
 
   training_accuracies = model.history.history["acc"]
   validation_accuracies = model.history.history["val_acc"]
-
-  max_train_epoch = np.argmax(training_accuracies)+1
-  max_val_epoch = np.argmax(validation_accuracies)+1
-
+  optimal_epochs = len(training_accuracies)
+  
   train_result = "Training Accuracies = "+str(training_accuracies)+"\nValidation Accuracies = "+str(validation_accuracies)+"\n"
-  train_result += "Max Training Accuracy occurred at "+str(max_train_epoch)+" epochs\n"
-  train_result += "Max Validation Accuracy occurred at "+str(max_val_epoch)+" epochs\n"
   training_file.write(train_result + "\n========\n")
 
   training_file.close()
 
   plot_model(model.history,epochs)
   
-  # fit the model again for max_val_epoch epochs
-  model.fit(data['x_train'], data['y_train'],batch_size=512, epochs = max_val_epoch,validation_split=0.3,callbacks=[annealer, mc])
-
-  
   """# Calculating accuracy with testing dataset"""
 
-  temp = model.predict(data['x_test'])
-  temp = np.argmax(temp, axis=1)
-  temp = np.mean(temp == data['y_test'])
+  predictions = model.predict(data['x_test'])
+  y_test = [ np.argmax(t) for t in data['y_test'] ]
+  y_predict = [ np.argmax(t) for t in predictions ]
+  test_accuracy = accuracy_score(y_test,y_predict)
 
-
-  best_m = open(best_model_results, "w+")
-  best_result = "BEST MODEL\nTest Accuracy = {0} for {1} epochs".format(temp,max_val_epoch)
-  best_m.write(best_result)
-  best_m.close()
+  test_result_file_handle = open(file_testing_results, "w+")
+  test_result = "BEST MODEL\nTest Accuracy = {0} for {1} epochs".format(test_accuracy,optimal_epochs)
+  test_result_file_handle.write(test_result)
+  test_result_file_handle.close()
 
   with open(pkl_filename, 'wb') as file:
       pickle.dump(model, file)

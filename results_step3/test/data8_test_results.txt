@@ -1,0 +1,3 @@
+BEST MODEL
+Test Accuracy = 0.9300079176563737 for 15 epochs
+Accuracy worsened from step 2

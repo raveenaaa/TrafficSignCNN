@@ -20,5 +20,6 @@ env.bak/
 venv.bak/
 
 data/
+augmented/
 
 saved_models_step3/

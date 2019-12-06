@@ -5,7 +5,7 @@ import math as math
 import matplotlib.pyplot as plt
 
 # Opening file for reading in binary mode
-with open('./data/data7.pickle', 'rb') as f:
+with open('./data/data0.pickle', 'rb') as f:
     data = pickle.load(f, encoding='latin1')  # dictionary type
 
 

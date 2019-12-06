@@ -23,3 +23,6 @@ data/
 augmented/
 
 saved_models_step3/
+step_7/saved_models
+
+*.h5

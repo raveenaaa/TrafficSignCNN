@@ -1,0 +1,2 @@
+BEST MODEL
+Test Accuracy = 0.9622327790973871 for 256 batch size

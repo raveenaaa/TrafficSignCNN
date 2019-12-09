@@ -1,5 +1,3 @@
-tensorflow==2.0.0
-tensorflow-gpu=2.0.0
 keras
 numpy
 pandas
@@ -8,3 +6,4 @@ opencv-python
 matplotlib
 jupytext
 jupyter
+pillow
